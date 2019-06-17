@@ -1,0 +1,31 @@
+{
+    "devDependencies": {
+        "@symfony/webpack-encore": "^0.27.0",
+        "core-js": "^3.0.0",
+        "eslint": "^5.16.0",
+        "eslint-config-airbnb": "^17.1.0",
+        "jest": "^24.8.0",
+        "prop-types": "^15.7.2",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "webpack-notifier": "^1.6.0"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@babel/preset-react": "^7.0.0",
+        "connected-react-router": "^6.4.0",
+        "history": "^4.9.0",
+        "react-redux": "^7.1.0",
+        "react-router": "^5.0.1",
+        "react-router-dom": "^5.0.1",
+        "redux": "^4.0.1",
+        "redux-thunk": "^2.3.0"
+    }
+}
