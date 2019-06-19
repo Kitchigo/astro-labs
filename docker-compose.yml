@@ -6,7 +6,7 @@ services:
         ports:
             - ${POSTGRES_PORT}:5432
         volumes:
-            - ./.data/pgdata:/var/lib/postgresql/data
+            - /var/lib/postgresql/data
         environment:
             DATABASE_URL: ${DATABASE_URL}
     php:
@@ -24,8 +24,3 @@ services:
             - php
         volumes:
             - ${LOGS_DIR}/nginx/:/var/log/nginx
-    node:
-        build: docker/node
-        volumes:
-            - ${SYMFONY_APP_PATH}:/var/www/symfony
-        command: bash -c "yarn && yarn encore dev"
