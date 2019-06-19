@@ -76,5 +76,5 @@ php bin/phpunit
 
 * **Arthur Jacquemin** - [ArthurJCQ](https://github.com/ArthurJCQ)
 
-Voir aussi la liste des [contributeurs](https://github.com/your/project/contributors) qui ont participé à ce projet.
+Voir aussi la liste des [contributeurs](https://github.com/ArthurJCQ/astro-labs/graphs/contributors) qui ont participé à ce projet.
 
