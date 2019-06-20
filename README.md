@@ -38,7 +38,7 @@ Changer la variable d'environnement DATABASE_URL dans un nouveau fichier .env.lo
 Créer la BDD :
 
 ```
-php bin/console doctrine:databse:create
+php bin/console doctrine:database:create
 ```
 
 Effectuer les migrations
