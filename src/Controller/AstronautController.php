@@ -15,6 +15,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\View as ViewAnnotation;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class AstronautController extends AbstractFOSRestController
 {
@@ -93,7 +94,7 @@ class AstronautController extends AbstractFOSRestController
             return View::create($astronaut, Response::HTTP_CREATED);
         }
 
-        throw $this->createBadRequestException(
+        throw new BadRequestHttpException(
             'Erreur :' . $form->getErrors()
         );
     }
