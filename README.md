@@ -10,12 +10,15 @@ Ces instructions vous permettront d'installer et d'exécuter l'application sur v
 
 Voici les éléments obligatoires pour pouvoir utiliser le projet 
 
+Seul Docker est requis !
+
+Sinon il est toujours possible de ne pas utiliser Docker si on possède ces outils :
 * PHP 7.1 minimum
 * PostgreSQL
 * Composer
 * Node.js & yarn
 
-### Installing
+### Installing and running with docker-compose
 
 Commencer par cloner le projet :
 
@@ -29,32 +32,34 @@ Installer les dépendances :
 composer install
 ```
 
-```
-yarn
-```
-
-Changer la variable d'environnement DATABASE_URL dans un nouveau fichier .env.local à votre convenance.
-
-Créer la BDD :
+À partir d'ici, on peut utiliser docker-compose :
 
 ```
-php bin/console doctrine:database:create
+docker-compose up
 ```
 
-Effectuer les migrations
+Les différentes images vont automatiquement se builder.
+
+Il faudra ensuite lancer quelques commandes dans le container contenant l'application Symfony :
 
 ```
-php bin/console do:mi:mi
+docker-compose exec php bash
 ```
 
-Pour builder les assets avec Webpack Encore :
+On peut ensuite créer la base de données :
 
 ```
-yarn encore dev
+sf4 do:da:cr
+sf4 do:mi:mi
 ```
 
-Vous pouvez ensuite lancer votre serveur de développement.
+On peut ensuite générer les données de test :
 
+```
+sf4 do:fi:lo
+```
+
+L'application tourne à présent sur votre adresse localhost .
 
 ## Running the tests
 
