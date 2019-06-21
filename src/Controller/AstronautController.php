@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Astronaut;
+use App\Form\AstronautType;
 use App\Repository\AstronautRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -71,22 +72,29 @@ class AstronautController extends AbstractFOSRestController
      * @param Request $request
      * @return View
      */
-    public function postAstronaut(Request $request, EntityManagerInterface $entityManager): View
+    public function postAstronaut(Request $request, EntityManagerInterface $em): View
     {
-        // We create the new resource
+        // We create the new resource and its form
         $astronaut = new Astronaut();
+        $form = $this->createForm(AstronautType::class, $astronaut);
 
-        // We populate it with the data we received
-        $astronaut->setName($request->get('name'));
-        $astronaut->setAge($request->get('age'));
-        $astronaut->setPlanet($request->get('planet'));
-        $astronaut->setScore($request->get('score'));
+        // We deserialize the received datas
+        $data = json_decode($request->getContent(), true);
 
-        // We save it in our DB
-        $entityManager->persist($astronaut);
-        $entityManager->flush();
+        // We submit the data to the form we created for the astronaut entity
+        $form->submit($data);
 
-        // In case our POST was a success we need to return a 201 HTTP CREATED response
-        return View::create($astronaut, Response::HTTP_CREATED);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // If it's ok, we populate the object and we save it in our DB
+            $em->persist($astronaut);
+            $em->flush();
+
+            // In case our POST was a success we need to return a 201 HTTP CREATED response
+            return View::create($astronaut, Response::HTTP_CREATED);
+        }
+
+        throw $this->createBadRequestException(
+            'Erreur :' . $form->getErrors()
+        );
     }
 }
