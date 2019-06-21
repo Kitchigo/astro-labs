@@ -63,7 +63,13 @@ L'application tourne à présent sur votre adresse localhost .
 
 ## Running the tests
 
-Pour éxecuter les tests :
+Pour éxecuter les tests, rentrer dans le container docker php :
+
+```
+docker-compose exec php bash
+```
+
+Puis lancer les tests :
 
 ```
 php bin/phpunit
